@@ -265,6 +265,8 @@ class CameraService {
         return const Size(1280, 720);
       case ResolutionPreset.higher:
         return const Size(1200, 900);
+      case ResolutionPreset.square:
+        return const Size(1200, 1200);
       case ResolutionPreset.medium:
         return const Size(720, 480);
       case ResolutionPreset.low:
@@ -294,6 +296,8 @@ class CameraService {
         return 1 * _megaBits;
       case ResolutionPreset.higher:
         return 1 * _megaBits;
+      case ResolutionPreset.square:
+        return 1 * _megaBits;
       case ResolutionPreset.medium:
         return 400 * _kiloBits;
       case ResolutionPreset.low:
@@ -320,6 +324,8 @@ class CameraService {
       case ResolutionPreset.high:
         return 64 * _kiloBits;
       case ResolutionPreset.higher:
+        return 64 * _kiloBits;
+      case ResolutionPreset.square:
         return 64 * _kiloBits;
       case ResolutionPreset.medium:
         return 48 * _kiloBits;
