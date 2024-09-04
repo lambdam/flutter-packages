@@ -168,6 +168,17 @@ class Camera {
       cameraId: textureId,
     );
 
+    print("Initialize print 1");
+    print(options.video.deviceId);
+    print(options.video.width?.ideal);
+    print(options.video.width?.minimum);
+    print(options.video.width?.maximum);
+    print(options.video.height?.ideal);
+    print(options.video.height?.minimum);
+    print(options.video.height?.maximum);
+    print(options.video.facingMode);
+    print("---");
+
     videoElement = web.HTMLVideoElement();
 
     divElement = web.HTMLDivElement()
@@ -181,11 +192,19 @@ class Camera {
       (_) => divElement,
     );
 
+    print("Before videoElement setting");
+    print(
+        "videoElement: width: ${videoElement.videoWidth} | height: ${videoElement.videoHeight}");
+
     videoElement
       ..autoplay = false
       ..muted = true
       ..srcObject = stream
       ..setAttribute('playsinline', '');
+
+    print("After videoElement setting");
+    print(
+        "videoElement: width: ${videoElement.videoWidth} | height: ${videoElement.videoHeight}");
 
     _applyDefaultVideoStyles(videoElement);
 
@@ -200,6 +219,10 @@ class Camera {
         onEndedController.add(defaultVideoTrack);
       });
     }
+
+    print("Initialization");
+    print(
+        "videoElement: width: ${videoElement.videoWidth} | height: ${videoElement.videoHeight}");
   }
 
   /// Starts the camera stream.
@@ -214,6 +237,9 @@ class Camera {
       videoElement.srcObject = stream;
     }
     await videoElement.play().toDart;
+    print("Play");
+    print(
+        "videoElement: width: ${videoElement.videoWidth} | height: ${videoElement.videoHeight}");
   }
 
   /// Pauses the camera stream on the current frame.
@@ -253,6 +279,7 @@ class Camera {
 
     final int videoWidth = videoElement.videoWidth;
     final int videoHeight = videoElement.videoHeight;
+
     final web.HTMLCanvasElement canvas = web.HTMLCanvasElement()
       ..width = videoWidth
       ..height = videoHeight;
@@ -264,6 +291,18 @@ class Camera {
         ..translate(videoWidth, 0)
         ..scale(-1, 1);
     }
+
+    print("takePicture");
+    [
+      "videoElement.height: ${videoElement.height}",
+      "videoElement.width: ${videoElement.width}",
+      "videoElement.videoWidth: ${videoElement.videoWidth}",
+      "videoElement.videoHeight: ${videoElement.videoHeight}",
+      "videoWidth: $videoWidth",
+      "videoHeight: $videoHeight",
+      "videoElement.height > videoElement.width = ${videoElement.height > videoElement.width}",
+      "videoElement.videoHeight > videoElement.videoWidth = ${videoElement.videoHeight > videoElement.videoWidth}",
+    ].forEach(print);
 
     canvas.context2D.drawImageScaled(
       videoElement,
@@ -625,6 +664,8 @@ class Camera {
   /// Applies default styles to the video [element].
   void _applyDefaultVideoStyles(web.HTMLVideoElement element) {
     final bool isBackCamera = getLensDirection() == CameraLensDirection.back;
+
+    print("lens direction: ${getLensDirection()}");
 
     // Flip the video horizontally if it is not taken from a back camera.
     if (!isBackCamera) {
