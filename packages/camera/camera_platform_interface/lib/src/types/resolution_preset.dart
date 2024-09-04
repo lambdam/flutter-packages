@@ -17,6 +17,9 @@ enum ResolutionPreset {
   /// ~720p
   high,
 
+  /// 1200x900
+  higher,
+
   /// ~1080p
   veryHigh,
 
