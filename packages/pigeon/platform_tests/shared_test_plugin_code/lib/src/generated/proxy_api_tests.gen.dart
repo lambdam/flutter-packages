@@ -54,7 +54,6 @@ abstract class PigeonInternalProxyApiBaseClass {
   final BinaryMessenger? pigeon_binaryMessenger;
 
   /// Maintains instances stored to communicate with native language objects.
-  @protected
   final PigeonInstanceManager pigeon_instanceManager;
 
   /// Instantiates and returns a functionally identical object to oneself.
@@ -2807,8 +2806,8 @@ class ProxyApiTestClass extends ProxyApiSuperClass
 
   /// Returns the passed list with ProxyApis, to test serialization and
   /// deserialization.
-  Future<List<ProxyApiTestClass?>> echoProxyApiList(
-      List<ProxyApiTestClass?> aList) async {
+  Future<List<ProxyApiTestClass>> echoProxyApiList(
+      List<ProxyApiTestClass> aList) async {
     final _PigeonInternalProxyApiBaseCodec pigeonChannelCodec =
         _pigeonVar_codecProxyApiTestClass;
     final BinaryMessenger? pigeonVar_binaryMessenger = pigeon_binaryMessenger;
@@ -2837,7 +2836,7 @@ class ProxyApiTestClass extends ProxyApiSuperClass
       );
     } else {
       return (pigeonVar_replyList[0] as List<Object?>?)!
-          .cast<ProxyApiTestClass?>();
+          .cast<ProxyApiTestClass>();
     }
   }
 
@@ -2877,8 +2876,8 @@ class ProxyApiTestClass extends ProxyApiSuperClass
 
   /// Returns the passed map with ProxyApis, to test serialization and
   /// deserialization.
-  Future<Map<String?, ProxyApiTestClass?>> echoProxyApiMap(
-      Map<String?, ProxyApiTestClass?> aMap) async {
+  Future<Map<String, ProxyApiTestClass>> echoProxyApiMap(
+      Map<String, ProxyApiTestClass> aMap) async {
     final _PigeonInternalProxyApiBaseCodec pigeonChannelCodec =
         _pigeonVar_codecProxyApiTestClass;
     final BinaryMessenger? pigeonVar_binaryMessenger = pigeon_binaryMessenger;
@@ -2907,7 +2906,7 @@ class ProxyApiTestClass extends ProxyApiSuperClass
       );
     } else {
       return (pigeonVar_replyList[0] as Map<Object?, Object?>?)!
-          .cast<String?, ProxyApiTestClass?>();
+          .cast<String, ProxyApiTestClass>();
     }
   }
 
